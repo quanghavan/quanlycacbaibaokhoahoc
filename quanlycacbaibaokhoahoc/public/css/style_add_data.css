@@ -1,0 +1,45 @@
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.import-file {
+    margin-top: 60px;
+}
+
+.margin-top {
+    margin-top: 20px;
+}
+
+.background-nav {
+    background-color: #0000ff;
+    color: white;
+
+}
+
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #ffffff;
+}
+
+.margin_bottom {
+    margin-bottom: 30px;
+}
