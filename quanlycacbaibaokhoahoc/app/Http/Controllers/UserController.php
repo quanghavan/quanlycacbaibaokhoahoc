@@ -14,7 +14,7 @@ class UserController extends Controller
     public function postLogin(Request $request){
 
     }
-    //hiển thị trang list
+    //hiển thị trang danh sách
     public function getList(){
         return view('list');
     }
