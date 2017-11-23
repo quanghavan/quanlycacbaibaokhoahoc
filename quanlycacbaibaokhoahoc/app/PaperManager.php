@@ -7,11 +7,18 @@ use Illuminate\Support\Facades\DB;
 
 class PaperManager extends Model
 {
-    //
     public function searchByPhrase($phrase){
-
+        $query = "
+          SELECT paper.title as title, surname,givenName,author.url as aurl,paper.url as uurl,
+          paper.issn as issn,paper.coverDate as coverDate,paper.abstract as abstract
+          FROM author,author_paper, paper WHERE
+          MATCH(title, issn, authors, abstract)
+          AGAINST( '" . $phrase . "' IN NATURAL LANGUAGE MODE)
+          AND author.id = author_paper.authorid
+          AND author_paper.paperid = paper.id";
+        $paper = DB::select( DB::raw($query));
+        return $paper;
     }
-    //
     public function searchByField($arr){
         $paper = DB::table('author')
 			->select('paper.title as title', 'surname','givenName','author.url as aurl','paper.url as uurl',
@@ -26,15 +33,12 @@ class PaperManager extends Model
 			->where($arr)->paginate(5);
         return $paper;
     }
-    //
     public function listPaper(){
 
     }
-    //
     public function deletePaper(){
 
     }
-    //
     public function addPaper(){
 
     }
