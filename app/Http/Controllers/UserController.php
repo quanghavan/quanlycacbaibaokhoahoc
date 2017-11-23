@@ -22,11 +22,12 @@ class UserController extends Controller
     public function search(Request $request){
       if($request->fulltext_search == "false"){
         if($request->author != ""){
-          $str = preg_split ('/[\s,]+/',$request->author);
-          $arr[] = array('author.surname','like',$str[0].'%');
-          if(count($str)>1){
-            $arr[] = array('author.givenName','like',$str[1].'%');
-          }
+            $str = preg_split ('/[\s,]+/',$request->author);
+			$arr[] = array('author.surname','like',$str[0].'%');
+			$givenName[] = array('author.givenName','like',$str[0].'%');
+			if(count($str)>1){
+				$arr[] = array('author.givenName','like',$str[1].'%');
+			}
         }
         if($request->keywords != ""){
           $arr[] = array('paper.keywords','like',$request->keywords.'%');
@@ -44,7 +45,7 @@ class UserController extends Controller
           ||isset($request->institute)||isset($request->city_state)
           ||isset($request->country)){
           $pm = new PaperManager();
-          $paper = $pm->searchByField($arr);
+          $paper = $pm->searchByField($arr,$givenName);
           $paper->setPath('search?author='.$request->author.'&keywords='.$request->keywords.'&institute='.$request->institute
           .'&city_state='.$request->city_state.'&country='.$request->country);
           return view('search_paper',['paper' => $paper]);
