@@ -3,6 +3,10 @@ button.btn.btn-primary.dropdown-toggle {
     background-color: white;
     color: black;
 }
+.normal {
+    font-weight: normal;
+    font-size: 100%;
+}
 
 .form-search {
 	width: 400px;

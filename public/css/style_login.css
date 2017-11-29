@@ -1,0 +1,17 @@
+.box_login{
+    width:40%;
+    margin: auto;
+    margin-top: 200px;
+}
+.header{
+    text-align: center;
+}
+.button_submit{
+    display: block;
+    margin: auto;
+    margin-top: 20px;
+    background-color: #234ce0;
+    color:#fff; 
+}
+.color{
+}
