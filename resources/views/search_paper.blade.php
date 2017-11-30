@@ -25,27 +25,14 @@
     				<span class="icon-bar"></span>
     				<span class="icon-bar"></span>
     			</button>
-    			<a class="navbar-brand" href="#">Paper</a>
+    			<a class="navbar-brand normal" href="#">Paper</a>
     		</div>
 
     		<!-- Collect the nav links, forms, and other content for toggling -->
     		<div class="collapse navbar-collapse navbar-ex1-collapse">
     			<ul class="nav navbar-nav">
-    				<li><a href="#">Add data</a></li>
+    				<li><a href="#" class='normal'>Add data</a></li>
     				<!-- <li><a href="#">Link</a></li> -->
-    			</ul>
-
-    			<ul class="nav navbar-nav navbar-right">
-    				<li class="dropdown">
-    					<a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-    					<ul class="dropdown-menu">
-    						<li><a href="#">Change user name and password</a></li>
-    						<div class="divider"></div>
-    						<li><a href="#">Logout 2</a></li>
-
-
-    					</ul>
-    				</li>
     			</ul>
     		</div><!-- /.navbar-collapse -->
     	</div>
