@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use DB;
 use App\PaperManager;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
     //hiển thị trang login
@@ -12,6 +15,17 @@ class UserController extends Controller
     }
     //xử lý việc login
     public function postLogin(Request $request){
+        $this->validate($request,[
+            'username' => 'required',
+            'password' => 'required'
+        ],[
+            'username.required' => 'Vui lòng nhập vào username',
+            'password.required' => 'Vui lòng nhập vào password'
+        ]);
+        if(Auth::attempt(['username' =>$request->username,'password' => $request->password])){
+            return redirect()->intended('search');
+        }
+        return redirect('login')->with('thongbao','Đăng nhập không thành công');
 
     }
     //hiển thị trang danhsach
@@ -21,6 +35,7 @@ class UserController extends Controller
     //hiển thị trang tìm kiếm và xử lý việc tìm kiếm
     public function search(Request $request){
       if($request->fulltext_search == "false"){
+
         if($request->author != ""){
             $str = preg_split ('/[\s,]+/',$request->author);
 			$arr[] = array('author.surname','like',$str[0].'%');
@@ -45,6 +60,9 @@ class UserController extends Controller
           ||isset($request->institute)||isset($request->city_state)
           ||isset($request->country)){
           $pm = new PaperManager();
+		  if(!isset($givenName)){
+			$givenName[] = array('author.givenName','=','.');
+		  }
 	  if(!isset($givenName)){
 	      $givenName[] = array('author.givenName','=','.');
 	  }

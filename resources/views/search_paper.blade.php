@@ -34,6 +34,20 @@
     				<li><a href="#">Add data</a></li>
     				<!-- <li><a href="#">Link</a></li> -->
     			</ul>
+<<<<<<< HEAD
+				@if((Auth::user()))
+    			<ul class="nav navbar-nav navbar-right">
+    				<li class="dropdown">
+    					<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Auth::user()->username}}<b class="caret"></b></a>
+    					<ul class="dropdown-menu">
+    						<li><a href="{{route('changeUserPass',['id'=> Auth::user()->id])}}">Change user name and password</a></li>
+    						<div class="divider"></div>
+    						<li><a href="{{route('logout')}}">Logout</a></li>
+    					</ul>
+    				</li>
+    			</ul>
+				@endif
+=======
 
     			<ul class="nav navbar-nav navbar-right">
     				<li class="dropdown">
@@ -47,6 +61,7 @@
     					</ul>
     				</li>
     			</ul>
+>>>>>>> 3c2effb7fd22038472317c07b47d3a693bc25846
     		</div><!-- /.navbar-collapse -->
     	</div>
  </nav> <!-- Kết thúc navbar -->
@@ -143,7 +158,11 @@
       	<hr>
       	@endforeach
       	<center>
+<<<<<<< HEAD
+      		{{$paper->links()}}
+=======
       		{{-- {{$paper->links()}} --}}
+>>>>>>> 3c2effb7fd22038472317c07b47d3a693bc25846
       	</center>
       </div>
 	@else
