@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use DB;
 use App\PaperManager;
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -33,6 +34,8 @@ class UserController extends Controller
     }
     //hiển thị trang tìm kiếm và xử lý việc tìm kiếm
     public function search(Request $request){
+      if($request->fulltext_search == "false"){
+
         if($request->author != ""){
             $str = preg_split ('/[\s,]+/',$request->author);
 			$arr[] = array('author.surname','like',$str[0].'%');
@@ -60,6 +63,9 @@ class UserController extends Controller
 		  if(!isset($givenName)){
 			$givenName[] = array('author.givenName','=','.');
 		  }
+	  if(!isset($givenName)){
+	      $givenName[] = array('author.givenName','=','.');
+	  }
           $paper = $pm->searchByField($arr,$givenName);
           $paper->setPath('search?author='.$request->author.'&keywords='.$request->keywords.'&institute='.$request->institute
           .'&city_state='.$request->city_state.'&country='.$request->country);
@@ -68,5 +74,10 @@ class UserController extends Controller
         else{
           return view('search_paper');
         }
+      } else {
+        $pm = new PaperManager();
+        $paper = $pm->searchByPhrase($request->word);
+        return view('search_paper',['paper' => $paper]);
+      }
     }
 }

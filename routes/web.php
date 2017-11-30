@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['prefix' => 'admin','middleware'=>'adminlogin'],function() {
-    Route::get('changeUserPass/{idUser}','AdminController@getChangeUserPass')->name('changeUserPass');;
+    Route::get('changeUserPass/{idUser}','AdminController@getChangeUserPass')->name('changeUserPass');
     Route::post('changeUserPass/{idUser}','AdminController@postChangeUserPass');
     Route::get('deletePaper/{idPaper}','AdminController@deletePaper');
     Route::get('deletePaper/{idPaper}','AdminController@deletePaper');
