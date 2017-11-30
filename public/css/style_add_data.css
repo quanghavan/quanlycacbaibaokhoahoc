@@ -1,6 +1,7 @@
 .btn-file {
     position: relative;
     overflow: hidden;
+    float: right;
 }
 .btn-file input[type=file] {
     position: absolute;
@@ -18,8 +19,29 @@
     display: block;
 }
 
+.guild_table{
+    width: 90%;
+    margin: auto;
+    border: 1px solid grey;
+}
+.guild_table th, td{
+    border: 1px solid grey;
+    padding: 5px;
+}
+
+.guild_table th{
+    text-align: center;
+}
+
 .import-file {
-    margin-top: 60px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    width: 40%;
+    margin: auto;
+}
+
+.main_region{
+    margin-left: auto;
 }
 
 .margin-top {
@@ -42,4 +64,46 @@
 
 .margin_bottom {
     margin-bottom: 30px;
+}
+
+.apply_button{
+    display: block;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.btn_apply{
+    margin: auto;
+    display: block;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: #cccccc;
+}
+.inputfile + label{
+    cursor: pointer;
+}
+.inputfile:focus + label {
+    outline: 1px dotted #cccccc;
+    outline: -webkit-focus-ring-color auto 5px;
+}
+.inputfile {
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    width: 120px;
+    text-align: center;
+    color: black;
+    font-weight: normal;
+    background-color: #fff;
+    display: inline-block;
+    padding: 3px;
+    border-radius: 10px;
+    border: 1px solid grey;
 }

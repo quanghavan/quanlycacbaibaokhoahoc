@@ -3,16 +3,27 @@
 namespace App\Http\Controllers;
 use DB;
 use App\PaperManager;
+use App\AuthenticationManager;
 use Illuminate\Http\Request;
 class UserController extends Controller
 {
     //hiển thị trang login
-    public function getLogin(){
-        return view('login');
+    public function getLogin(Request $request){
+      return view('login', ['error'=>$request->error]);
     }
     //xử lý việc login
     public function postLogin(Request $request){
+      $name = $request->name;
+      $pass = $request->pass;
+      $model = new AuthenticationManager();
 
+      if($model->check($name, $pass)){
+        $request->session()->put('logged', true);
+        return redirect()->route('add_data', ['success_message'=>'', 'error_message'=>'']);
+      }
+      else{
+        return redirect()->route('admin', ['error'=>"Tên đăng nhập hoặc mật khẩu không đúng"]);
+      }
     }
     //hiển thị trang danhsach
     public function getList(){
@@ -20,14 +31,15 @@ class UserController extends Controller
     }
     //hiển thị trang tìm kiếm và xử lý việc tìm kiếm
     public function search(Request $request){
+      //return view('search_paper');
       if($request->fulltext_search == "false"){
         if($request->author != ""){
             $str = preg_split ('/[\s,]+/',$request->author);
-			$arr[] = array('author.surname','like',$str[0].'%');
-			$givenName[] = array('author.givenName','like',$str[0].'%');
-			if(count($str)>1){
-				$arr[] = array('author.givenName','like',$str[1].'%');
-			}
+            $arr[] = array('author.surname','like',$str[0].'%');
+            $givenName[] = array('author.givenName','like',$str[0].'%');
+            if(count($str)>1){
+              $arr[] = array('author.givenName','like',$str[1].'%');
+            }
         }
         if($request->keywords != ""){
           $arr[] = array('paper.keywords','like',$request->keywords.'%');
