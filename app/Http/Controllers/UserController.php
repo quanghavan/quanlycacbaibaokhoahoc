@@ -45,6 +45,9 @@ class UserController extends Controller
           ||isset($request->institute)||isset($request->city_state)
           ||isset($request->country)){
           $pm = new PaperManager();
+	if(!isset($givenName)){
+	    $givenName = $arr;
+	}
           $paper = $pm->searchByField($arr,$givenName);
           $paper->setPath('search?author='.$request->author.'&keywords='.$request->keywords.'&institute='.$request->institute
           .'&city_state='.$request->city_state.'&country='.$request->country);
